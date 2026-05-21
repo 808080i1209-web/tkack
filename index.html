@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yongdon-Nudge: 고등학생 체감물가 및 소비 효율성 분석기</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandBg: '#0b0f19',
+                        cardBg: '#161c2a',
+                        primary: '#10b981', // Emerald Green
+                        secondary: '#3b82f6', // Blue
+                        accent: '#f59e0b', // Amber
+                        danger: '#ef4444' // Red
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700;800&display=swap');
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: #0b0f19;
+        }
+        /* Custom Scrollbar for sleek UI */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="text-slate-100 min-h-screen flex flex-col justify-between">
+
+    <!-- Top Navigation Header -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="text-2xl">💸</span>
+                <span class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">Yongdon Nudge</span>
+            </div>
+            <span class="text-xs font-semibold px-2 py-1 bg-emerald-500/10 text-emerald-400 rounded-full border border-emerald-500/20">고등학생 미시경제 지표 v2.0</span>
+        </div>
+    </header>
+
+    <!-- Main Container (Mobile App Mockup Limit) -->
+    <main class="flex-grow max-w-md w-full mx-auto px-4 py-6 space-y-6">
+        
+        <!-- App Intro Hero Card -->
+        <div class="bg-gradient-to-br from-cardBg to-slate-900 p-5 rounded-2xl border border-slate-800 shadow-xl">
+            <p class="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-1">인플레이션 시대의 합리적 소비 가이드</p>
+            <h2 class="text-xl font-bold mb-2">명목 소득은 그대로, 내 용돈의 실질 가치는?</h2>
+            <p class="text-xs text-slate-400 leading-relaxed">
+                부모님이 주시는 용돈(명목 화폐액)은 같은데, 왜 사고 싶은 건 늘 부족할까요? 
+                청소년 핵심 지출 품목을 **7대 미시경제학적 카테고리**로 세분화하여 실질 구매력(Real Purchasing Power)의 감소율을 정밀 진단하고, 대체재(Substitution) 전환을 통한 효용 극대화 처방을 제공합니다.
+            </p>
+        </div>
+
+        <!-- Dashboard Steps -->
+        <section class="space-y-4">
+            <!-- step 1: Budget setting -->
+            <div class="bg-cardBg p-5 rounded-2xl border border-slate-800 space-y-3">
+                <div class="flex items-center gap-2 mb-1">
+                    <span class="text-emerald-400 font-bold text-sm">STEP 1</span>
+                    <h3 class="font-bold text-base">한 달 가용 예산(명목 소득) 설정</h3>
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1" for="allowance">정기 용돈 및 부수입 총액 (원)</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-semibold text-sm">₩</span>
+                        <input type="number" id="allowance" value="100000" class="w-full bg-slate-950/80 border border-slate-800 rounded-xl py-2.5 pl-8 pr-4 text-emerald-400 font-bold focus:outline-none focus:border-emerald-500 transition" placeholder="용돈 금액 입력">
+                    </div>
+                </div>
+            </div>
+
+            <!-- step 2: Spending input (7-Category Breakdown) -->
+            <div class="bg-cardBg p-5 rounded-2xl border border-slate-800 space-y-4">
+                <div class="flex items-center gap-2 mb-1">
+                    <span class="text-emerald-400 font-bold text-sm">STEP 2</span>
+                    <h3 class="font-bold text-base">7대 체감 지출 품목 미시 분석</h3>
+                </div>
+                
+                <p class="text-xs text-slate-400">최근 한 달 동안 소비한 세부 품목의 한계 지출액을 입력해주세요.</p>
+
+                <div class="space-y-3">
+                    <!-- Category 1 -->
+                    <div class="flex items-center justify-between gap-4 bg-slate-950/40 p-3 rounded-xl border border-slate-800/60">
+                        <div
